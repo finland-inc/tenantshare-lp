@@ -90,6 +90,20 @@ section{padding:clamp(64px,10vw,120px) 0}
 .cmp tbody th{color:var(--mute);font-weight:400;width:24%}
 .table-scroll{overflow-x:auto}
 
+/* Voice */
+.voice{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.voice-side{border-top:1px solid var(--line)}
+.voice-side div{padding:14px 0;border-bottom:1px solid var(--line)}
+.voice-side dt{font-size:13px;color:var(--mute)}
+.voice-side dd{margin:2px 0 0;font-weight:700}
+.voice-side .num{font-family:var(--serif);font-size:28px;color:var(--amber);letter-spacing:.02em}
+.voice-name{font-family:var(--serif);font-size:20px;margin:0 0 4px}
+.voice-catch{font-family:var(--serif);font-size:clamp(22px,3vw,32px);line-height:1.6;margin:0 0 28px}
+.voice-body h3{font-size:16px;color:var(--amber);font-family:var(--sans);font-weight:700;letter-spacing:.04em;margin:26px 0 6px}
+.voice-body p{margin:0;max-width:38em}
+.voice-quote{margin:32px 0 12px;padding:20px 0 0;border-top:1px solid var(--line);font-family:var(--serif);font-size:18px;line-height:1.9}
+@media(max-width:760px){.voice{grid-template-columns:1fr}}
+
 /* Price & time band */
 .price{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(32px,6vw,72px);align-items:start}
 .price-big{white-space:nowrap;font-family:var(--serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--amber);margin:6px 0 8px}
@@ -217,6 +231,37 @@ footer a{color:var(--cream)}
         <tr><th scope="row">場所</th><td>空き物件しだい。人気のテナント情報は一般には出回らず、たどり着くのが難しい</td><td class="us">すすきの駅から徒歩2分</td></tr>
       </tbody>
     </table>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="voice-title">
+  <div class="wrap">
+    <h2 class="sec-title" id="voice-title">実際に始めた人の声</h2>
+    <p class="sec-lead">バーテンダー未経験から、このテナントシェアで自分の店を始めた方のお話です。</p>
+    <div class="voice">
+      <dl class="voice-side">
+        <div><dt>お名前</dt><dd>Sくん（20代）</dd></div>
+        <div><dt>前のお仕事</dt><dd>昼間の営業職（バーテンダー未経験）</dd></div>
+        <div><dt>業態・時間帯</dt><dd>BAR／19:00〜翌1:00</dd></div>
+        <div><dt>利用期間</dt><dd>1年半</dd></div>
+        <div><dt>初月の売上</dt><dd class="num">約30万円</dd></div>
+        <div><dt>現在の月の売上</dt><dd class="num">100万円以上</dd></div>
+        <div><dt>スタッフ</dt><dd>アルバイト2名を採用</dd></div>
+      </dl>
+      <div class="voice-body">
+        <p class="voice-catch">お金も経験もなかった。<br>それでも1年半で、<br>月の売上100万円以上に。</p>
+        <h3>始めたきっかけ</h3>
+        <p>昼間は営業の仕事をしていて、出会ってきたたくさんの方々との交流をもっと深められる場所が欲しいと思っていました。でも、まとまったお金もなく、テナントを借りられるかもわからない。初期費用を抑えて低リスクで始められるので、即決でした。ダメならすぐに撤退できるところも魅力でした（笑）。</p>
+        <h3>始めてみて</h3>
+        <p>昼間の仕事で知り合った人たちもたくさん来てくれています。続けていると友人が増えたり、知らない人同士が仲良くなってカップルになっていたり。たくさんのドラマが生まれて、自分がそこに関われている実感がすごいです。</p>
+        <h3>大変だったこと</h3>
+        <p>初月の売上は約30万円。黒字ではあったものの、思ったより少ないなという感じでした（笑）。売上が上がってからは、一緒に働ける仲間を集めるのが大変でした。そこもサポートしてもらえたので、今ではアルバイトを2名採用しています。</p>
+        <h3>これから</h3>
+        <p>本出店も考えていますが、審査が通るのか不安な部分もあります。別の店舗でテナントをシェアできるなら、それも考えていきたいです。</p>
+        <p class="voice-quote">「自分もそうだったけど、まずは体ひとつでも行動してみることだと思います。綺麗事なしで言うと、よかったら続けて、ダメだったら辞めればいい。」</p>
+        <p class="note">※ご本人の実績です。売上や成果を保証するものではありません。</p>
+      </div>
     </div>
   </div>
 </section>
