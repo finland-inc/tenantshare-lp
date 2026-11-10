@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tenantshare.jp/sitemap.xml
+Sitemap: https://susukino-tenantshare.com/sitemap.xml

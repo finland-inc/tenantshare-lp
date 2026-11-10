@@ -2,6 +2,10 @@
   "name": "tenantshare-lp",
   "compatibility_date": "2026-11-01",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "susukino-tenantshare.com", "custom_domain": true },
+    { "pattern": "www.susukino-tenantshare.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./",
     "not_found_handling": "single-page-application",
