@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>無料開業シミュレーション｜すすきのテナントシェア</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/column/column.css">
+<style>
+.sim-head{padding:32px 0 8px}
+.sim-head .badge{display:inline-block;background:var(--line-green);color:#fff;font-weight:700;font-size:12px;padding:3px 10px;border-radius:999px;margin-bottom:12px}
+.sim-head h1{font-size:clamp(26px,4.4vw,38px);margin-bottom:10px}
+.sim-head p{color:var(--mute);margin:0}
+
+.card{background:var(--panel);border-radius:8px;padding:24px clamp(18px,4vw,32px);margin:24px 0}
+.card h2{font-size:20px;margin-bottom:16px}
+
+/* 空き状況 */
+.slots{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.slots li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.slots .t{font-weight:700}
+.slots .t small{display:block;font-weight:400;color:var(--mute);font-size:13px}
+.open{background:rgba(6,199,85,.15);color:#5fe39a;font-weight:700;font-size:13px;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.asof{font-size:12px;color:var(--mute);margin:10px 0 0}
+
+/* Form */
+.field{padding:14px 0;border-bottom:1px solid var(--line)}
+.field:last-child{border-bottom:0}
+.field label,.field legend{display:block;font-weight:700;margin-bottom:8px;padding:0}
+.field fieldset{border:0;margin:0;padding:0;min-width:0}
+.field .hint{font-size:13px;color:var(--mute);margin:6px 0 0}
+.row{display:flex;align-items:center;gap:10px}
+.row input[type=range]{flex:1;accent-color:var(--amber)}
+.num{width:7.5em;background:var(--night);border:1px solid var(--line);color:var(--cream);border-radius:6px;padding:9px 10px;font:inherit;text-align:right}
+.unit{color:var(--mute);font-size:14px;white-space:nowrap}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;border:1px solid var(--line);border-radius:6px;padding:10px 6px;cursor:pointer;font-size:14px;line-height:1.5}
+.seg span small{display:block;color:var(--mute);font-size:12px}
+.seg input:checked+span{border-color:var(--amber);background:rgba(233,180,90,.12);color:var(--amber)}
+.seg input:focus-visible+span{outline:3px solid var(--amber);outline-offset:2px}
+@media(max-width:480px){.seg span{font-size:13px;padding:9px 4px}}
+
+/* Result */
+.result{border:1px solid var(--amber)}
+.big{font-family:var(--serif);font-size:clamp(36px,7vw,56px);color:var(--amber);line-height:1.2;margin:4px 0 4px}
+.big.minus{color:#ff8a7a}
+.big small{font-size:.38em;color:var(--cream);margin-left:4px}
+.lead-mute{color:var(--mute);margin:0 0 18px;font-size:14px}
+.res-table{width:100%;border-collapse:collapse;min-width:0;font-size:15px}
+.res-table th,.res-table td{padding:10px 4px;border-bottom:1px solid var(--line)}
+.res-table th{font-weight:400;color:var(--mute);width:auto}
+.res-table td{text-align:right;white-space:nowrap}
+.res-table tr.total th,.res-table tr.total td{color:var(--amber);font-weight:700;border-top:2px solid var(--line)}
+.be{margin:16px 0 0;font-size:15px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.cmp2 div{background:var(--night);border-radius:6px;padding:14px}
+.cmp2 h3{font-size:14px;font-family:var(--sans);color:var(--mute);margin-bottom:6px;letter-spacing:.04em}
+.cmp2 p{margin:0;font-size:14px}
+.cmp2 b{font-family:var(--serif);font-size:20px;color:var(--cream)}
+.cmp2 .us b{color:var(--amber)}
+@media(max-width:480px){.cmp2{grid-template-columns:1fr}}
+.send{text-align:center;margin-top:24px}
+.send p{font-size:14px;color:var(--mute);margin:10px 0 0}
+.disclaimer{font-size:12px;color:var(--mute);margin:20px 0 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/">すすきのテナントシェア<small>運営：株式会社FINLAND</small></a>
+    <nav><a href="https://lin.ee/NekoZWD" target="_blank" rel="noopener">LINEで相談</a></nav>
+  </div>
+</header>
+
+<main class="narrow">
+  <div class="sim-head">
+    <span class="badge">LINE友だち限定</span>
+    <h1>無料開業シミュレーション</h1>
+    <p>すすきのテナントシェアで自分のBARを始めたら、毎月いくら残るのか。数字を入れるだけで、その場で目安がわかります。</p>
+  </div>
+
+  <section class="card" aria-labelledby="slot-title">
+    <h2 id="slot-title">いま募集中の時間帯</h2>
+    <ul class="slots">
+      <li><span class="t">9:00〜19:00<small>昼の時間帯・10時間</small></span><span class="open">募集中</span></li>
+      <li><span class="t">19:00〜翌1:00<small>夜の時間帯・6時間</small></span><span class="open">募集中</span></li>
+      <li><span class="t">翌1:00〜9:00<small>深夜〜朝の時間帯・8時間</small></span><span class="open">募集中</span></li>
+    </ul>
+    <p class="asof">2026年11月10日時点。どの時間帯も月16万円（税抜）／税込17.6万円で、選んだ時間帯を毎日使えます。最新の状況はLINEで「空き状況」と送ると確認できます。</p>
+  </section>
+
+  <section class="card" aria-labelledby="in-title">
+    <h2 id="in-title">あなたのお店の条件</h2>
+    <form id="sim" onsubmit="return false">
+      <div class="field">
+        <fieldset>
+          <legend>使いたい時間帯</legend>
+          <div class="seg">
+            <label><input type="radio" name="slot" value="10"><span>9〜19時<small>10時間</small></span></label>
+            <label><input type="radio" name="slot" value="6" checked><span>19〜翌1時<small>6時間</small></span></label>
+            <label><input type="radio" name="slot" value="8"><span>翌1〜9時<small>8時間</small></span></label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="field">
+        <label for="days">1ヶ月の営業日数</label>
+        <div class="row"><input type="range" id="days-r" min="4" max="31" step="1" value="22" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="days" min="1" max="31" step="1" value="22" inputmode="numeric"><span class="unit">日</span></div>
+      </div>
+      <div class="field">
+        <label for="guests">1日のお客さんの数</label>
+        <div class="row"><input type="range" id="guests-r" min="1" max="60" step="1" value="10" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="guests" min="0" max="200" step="1" value="10" inputmode="numeric"><span class="unit">人</span></div>
+      </div>
+      <div class="field">
+        <label for="price">客単価（お客さん1人が使う金額）</label>
+        <div class="row"><input type="range" id="price-r" min="1000" max="15000" step="500" value="4000" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="price" min="0" step="100" value="4000" inputmode="numeric"><span class="unit">円</span></div>
+        <p class="hint">チャージ＋ドリンク数杯の合計。BARなら3,000〜6,000円ほどがよくある範囲です。</p>
+      </div>
+      <div class="field">
+        <label for="cogs">原価率（お酒・食材の仕入れ）</label>
+        <div class="row"><input type="range" id="cogs-r" min="10" max="50" step="1" value="25" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="cogs" min="0" max="100" step="1" value="25" inputmode="numeric"><span class="unit">％</span></div>
+        <p class="hint">BARのドリンクは20〜30％ほどが目安です。</p>
+      </div>
+      <div class="field">
+        <label for="staff">アルバイトの人数（自分以外）</label>
+        <div class="row"><input type="range" id="staff-r" min="0" max="4" step="1" value="0" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="staff" min="0" max="10" step="1" value="0" inputmode="numeric"><span class="unit">人</span></div>
+      </div>
+      <div class="field">
+        <label for="wage">アルバイトの時給</label>
+        <div class="row"><input type="range" id="wage-r" min="1000" max="2500" step="10" value="1200" aria-hidden="true" tabindex="-1"><input class="num" type="number" id="wage" min="0" step="10" value="1200" inputmode="numeric"><span class="unit">円</span></div>
+        <p class="hint">22時〜翌5時の深夜時間は、時給の25％増しで計算します。</p>
+      </div>
+    </form>
+  </section>
+
+  <section class="card result" aria-labelledby="out-title" aria-live="polite">
+    <h2 id="out-title">シミュレーション結果</h2>
+    <p class="lead-mute">月の利益（手元に残る金額）の目安</p>
+    <p class="big" id="profit">—</p>
+    <table class="res-table">
+      <tbody>
+        <tr><th>月の売上</th><td id="sales">—</td></tr>
+        <tr><th>仕入れ（原価）</th><td id="cost">—</td></tr>
+        <tr><th>月額利用料（税込）<br><small>家賃・管理費・光熱費・設備利用料込み</small></th><td id="fee">−176,000円</td></tr>
+        <tr><th>アルバイト代</th><td id="labor">—</td></tr>
+        <tr class="total"><th>月の利益の目安</th><td id="profit2">—</td></tr>
+      </tbody>
+    </table>
+    <p class="be" id="be"></p>
+
+    <h3 style="font-size:16px;margin:28px 0 4px">自分で物件を借りて始めた場合と比べると</h3>
+    <div class="cmp2">
+      <div class="us"><h3>すすきのテナントシェア</h3><p>初期費用 <b>0円</b><br>毎月の固定費 <b>17.6万円</b>（税込）</p></div>
+      <div><h3>自分で物件を借りる</h3><p>初期費用 <b>300万〜600万円</b>ほど<br>毎月の固定費 <b>約32万円〜</b></p></div>
+    </div>
+    <p class="hint" style="font-size:12px;color:var(--mute);margin:8px 0 0">「自分で物件を借りる」の数字は、すすきのの15坪ほどのBAR向け物件をもとにした目安です（<a href="/column/susukino-bar-kaigyo-hiyou/">くわしい内訳</a>）。</p>
+
+    <div class="send">
+      <a class="btn-line" id="sendline" href="https://lin.ee/NekoZWD" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6 1.5-1.6 2-3.2 2-4.9C22 6.6 17.5 3 12 3z"/></svg>この結果をLINEで相談する</a>
+      <p>押すとLINEが開き、結果の内容が入力された状態になります。そのまま送信してください。</p>
+    </div>
+
+    <p class="disclaimer">※この結果は、入力した数字をもとにした目安です。売上や利益を保証するものではありません。税金、カード決済の手数料、消耗品、広告費などは含んでいません。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">すすきのテナントシェア　運営：<a href="https://finlandinc.jp/">株式会社FINLAND</a></div>
+</footer>
+
+<script>
+(function(){
+  var FEE = 176000; // 月16万円（税抜）＋消費税10%
+  var ids = ['days','guests','price','cogs','staff','wage'];
+  function $(id){return document.getElementById(id)}
+  function yen(n){return (n<0?'−':'')+Math.round(Math.abs(n)).toLocaleString('ja-JP')+'円'}
+  function man(n){var v=Math.round(n/1000)/10; return (n<0?'−':'')+Math.abs(v).toLocaleString('ja-JP',{maximumFractionDigits:1})+'万円'}
+  function slotHours(){var r=document.querySelector('input[name=slot]:checked');return r?+r.value:6}
+  function nightHours(h){
+    // 選んだ時間帯のうち、22時〜翌5時に入る時間
+    var start = h===10?9:(h===6?19:25), end=start+h, n=0;
+    for(var t=start;t<end;t++){var m=t%24; if(m>=22||m<5) n++;}
+    return n;
+  }
+  function v(id){var x=parseFloat($(id).value);return isFinite(x)&&x>=0?x:0}
+  function calc(){
+    var h=slotHours(), days=Math.min(v('days'),31), guests=v('guests'), price=v('price'), cogs=Math.min(v('cogs'),100)/100;
+    var staff=v('staff'), wage=v('wage');
+    var sales=guests*price*days;
+    var cost=sales*cogs;
+    var nh=nightHours(h), dh=h-nh;
+    var labor=staff*days*(dh*wage+nh*wage*1.25);
+    var profit=sales-cost-FEE-labor;
+    $('sales').textContent=yen(sales);
+    $('cost').textContent=yen(-cost);
+    $('labor').textContent=yen(-labor);
+    $('profit2').textContent=yen(profit);
+    var b=$('profit'); b.innerHTML=man(profit)+'<small>／月</small>'; b.classList.toggle('minus',profit<0);
+    // 損益分岐：1日あたり何人来れば赤字にならないか
+    var perGuest=price*(1-cogs)*days;
+    var be=$('be');
+    if(perGuest>0){
+      var need=Math.ceil((FEE+labor)/perGuest);
+      be.innerHTML='この条件だと、<strong>1日'+need+'人</strong>来てくれれば赤字になりません。';
+    } else { be.textContent=''; }
+    var txt='【開業シミュレーション結果】\n時間帯：'+(h===10?'9〜19時':h===6?'19〜翌1時':'翌1〜9時')+'\n営業日数：'+days+'日／月\n1日のお客さん：'+guests+'人\n客単価：'+price.toLocaleString('ja-JP')+'円\n原価率：'+Math.round(cogs*100)+'％\nアルバイト：'+staff+'人（時給'+wage.toLocaleString('ja-JP')+'円）\n→ 月の売上 '+yen(sales)+'\n→ 月の利益の目安 '+yen(profit)+'\n\nこの内容で相談したいです。';
+    $('sendline').href='https://line.me/R/oaMessage/%40139tmybp/?'+encodeURIComponent(txt);
+  }
+  ids.forEach(function(id){
+    var n=$(id), r=$(id+'-r');
+    n.addEventListener('input',function(){ if(r) r.value=n.value; calc(); });
+    if(r) r.addEventListener('input',function(){ n.value=r.value; calc(); });
+  });
+  document.querySelectorAll('input[name=slot]').forEach(function(x){x.addEventListener('change',calc)});
+  calc();
+})();
+</script>
+</body>
+</html>
