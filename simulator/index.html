@@ -63,6 +63,20 @@
 .cmp2 b{font-family:var(--serif);font-size:20px;color:var(--cream)}
 .cmp2 .us b{color:var(--amber)}
 @media(max-width:480px){.cmp2{grid-template-columns:1fr}}
+.cmp-title{font-size:17px;margin:32px 0 10px}
+.vs{width:100%;border-collapse:collapse;min-width:0;font-size:14px}
+@media(max-width:480px){.vs{font-size:13px}.vs th,.vs td{padding:9px 5px}}
+.vs th,.vs td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+.vs thead th{font-family:var(--serif);color:var(--mute);font-weight:600}
+.vs thead th.us{color:var(--amber)}
+.vs tbody th{text-align:left;font-weight:400;color:var(--mute);width:auto}
+.vs td{white-space:nowrap;font-weight:700}
+.vs td.us{background:rgba(233,180,90,.08);color:var(--amber)}
+.vs td.neg{color:#ff8a7a}
+.verdict{margin:14px 0 0;font-size:15px}
+.assume{margin-top:12px;font-size:13px;color:var(--mute)}
+.assume summary{cursor:pointer;color:var(--cream)}
+.assume ul{padding-left:1.2em;margin:8px 0 0}
 .send{text-align:center;margin-top:24px}
 .send p{font-size:14px;color:var(--mute);margin:10px 0 0}
 .disclaimer{font-size:12px;color:var(--mute);margin:20px 0 0}
@@ -152,12 +166,30 @@
     </table>
     <p class="be" id="be"></p>
 
-    <h3 style="font-size:16px;margin:28px 0 4px">自分で物件を借りて始めた場合と比べると</h3>
-    <div class="cmp2">
-      <div class="us"><h3>すすきのテナントシェア</h3><p>初期費用 <b>0円</b><br>毎月の固定費 <b>17.6万円</b>（税込）</p></div>
-      <div><h3>自分で物件を借りる</h3><p>初期費用 <b>300万〜600万円</b>ほど<br>毎月の固定費 <b>約32万円〜</b></p></div>
+    <h3 class="cmp-title">同じ条件で、自分で物件を借りた場合と比べると</h3>
+    <div class="table-scroll">
+    <table class="vs">
+      <thead><tr><th></th><th class="us">テナントシェア</th><th>自分で借りる</th></tr></thead>
+      <tbody>
+        <tr><th>初期費用</th><td class="us">0円</td><td id="o-init">—</td></tr>
+        <tr><th>毎月の固定費（税込）</th><td class="us">176,000円</td><td id="o-fix">—</td></tr>
+        <tr><th>月の利益の目安</th><td class="us" id="t-prof">—</td><td id="o-prof">—</td></tr>
+        <tr><th>最初の1年で<br>手元に残る金額</th><td class="us" id="t-year">—</td><td id="o-year">—</td></tr>
+        <tr><th>初期費用を<br>取り戻すまで</th><td class="us">不要</td><td id="o-pay">—</td></tr>
+      </tbody>
+    </table>
     </div>
-    <p class="hint" style="font-size:12px;color:var(--mute);margin:8px 0 0">「自分で物件を借りる」の数字は、すすきのの15坪ほどのBAR向け物件をもとにした目安です（<a href="/column/susukino-bar-kaigyo-hiyou/">くわしい内訳</a>）。</p>
+    <p class="verdict" id="verdict"></p>
+    <details class="assume">
+      <summary>「自分で借りる」の計算の前提</summary>
+      <ul>
+        <li>すすきので募集中だった15坪ほどのBAR向け居抜き物件（家賃＋共益費 月約26.6万円）をもとにしています。</li>
+        <li>毎月の固定費は、家賃・共益費に光熱費・通信・設備の保守などとして月5.4万円を足した<b>月32万円</b>で計算しています。</li>
+        <li>初期費用は、居抜き物件で一般的な目安（300万〜600万円）のうち、少ないほうの<b>300万円</b>で計算しています。</li>
+        <li>売上・原価・アルバイト代は、上で入力した条件と同じです。自分で借りたお店は24時間使えますが、ここでは同じ時間帯だけ営業する前提で比べています。</li>
+        <li>くわしい内訳は<a href="/column/susukino-bar-kaigyo-hiyou/">こちらの記事</a>にまとめています。</li>
+      </ul>
+    </details>
 
     <div class="send">
       <a class="btn-line" id="sendline" href="https://lin.ee/NekoZWD" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6 1.5-1.6 2-3.2 2-4.9C22 6.6 17.5 3 12 3z"/></svg>この結果をLINEで相談する</a>
@@ -207,7 +239,19 @@
       var need=Math.ceil((FEE+labor)/perGuest);
       be.innerHTML='この条件だと、<strong>1日'+need+'人</strong>来てくれれば赤字になりません。';
     } else { be.textContent=''; }
-    var txt='【開業シミュレーション結果】\n時間帯：'+(h===10?'9〜19時':h===6?'19〜翌1時':'翌1〜9時')+'\n営業日数：'+days+'日／月\n1日のお客さん：'+guests+'人\n客単価：'+price.toLocaleString('ja-JP')+'円\n原価率：'+Math.round(cogs*100)+'％\nアルバイト：'+staff+'人（時給'+wage.toLocaleString('ja-JP')+'円）\n→ 月の売上 '+yen(sales)+'\n→ 月の利益の目安 '+yen(profit)+'\n\nこの内容で相談したいです。';
+    // 自分で物件を借りた場合（同じ売上・原価・人件費で比較）
+    var OWN_FIX=320000, OWN_INIT=3000000;
+    var oprof=sales-cost-OWN_FIX-labor;
+    var tyear=profit*12, oyear=oprof*12-OWN_INIT;
+    $('o-init').textContent='300万円〜';
+    $('o-fix').textContent='約'+OWN_FIX.toLocaleString('ja-JP')+'円';
+    function put(id,val){var e=$(id);e.textContent=yen(val);e.classList.toggle('neg',val<0)}
+    put('t-prof',profit); put('o-prof',oprof); put('t-year',tyear); put('o-year',oyear);
+    $('o-pay').textContent = oprof>0 ? (Math.ceil(OWN_INIT/oprof)>=120?'10年以上':'約'+Math.ceil(OWN_INIT/oprof)+'ヶ月') : '取り戻せない';
+    $('o-pay').classList.toggle('neg',!(oprof>0));
+    var diff=tyear-oyear;
+    $('verdict').innerHTML='この条件だと、最初の1年で手元に残る金額は、テナントシェアのほうが<strong>'+man(diff)+'</strong>多くなります。';
+    var txt='【開業シミュレーション結果】\n時間帯：'+(h===10?'9〜19時':h===6?'19〜翌1時':'翌1〜9時')+'\n営業日数：'+days+'日／月\n1日のお客さん：'+guests+'人\n客単価：'+price.toLocaleString('ja-JP')+'円\n原価率：'+Math.round(cogs*100)+'％\nアルバイト：'+staff+'人（時給'+wage.toLocaleString('ja-JP')+'円）\n→ 月の売上 '+yen(sales)+'\n→ 月の利益の目安 '+yen(profit)+'\n→ 1年で手元に残る金額 '+yen(tyear)+'（自分で借りた場合 '+yen(oyear)+'）\n\nこの内容で相談したいです。';
     $('sendline').href='https://line.me/R/oaMessage/%40139tmybp/?'+encodeURIComponent(txt);
   }
   ids.forEach(function(id){
