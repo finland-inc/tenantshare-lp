@@ -1,3 +1,2 @@
 /line-assets/*
-  Access-Control-Allow-Origin: https://manager.line.biz
-  X-Robots-Tag: noindex
+  Access-Control-Allow-Origin: *
