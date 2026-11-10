@@ -136,6 +136,13 @@ section{padding:clamp(64px,10vw,120px) 0}
 @media(max-width:760px){.gallery{grid-template-columns:1fr}.gallery figure:first-child{grid-row:auto}}
 .equip{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin:0}
 .equip div{display:grid;grid-template-columns:7em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.scenes-title{font-size:20px;margin:56px 0 18px}
+.scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0}
+.scenes figure{margin:0}
+.scenes img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.scenes figcaption{padding-top:10px;font-size:14px}
+.scenes figcaption b{display:block;color:var(--amber);font-size:15px}
+@media(max-width:760px){.scenes{grid-template-columns:1fr}}
 .equip dt{color:var(--amber);font-weight:700}
 .equip dd{margin:0}
 @media(max-width:760px){.equip{grid-template-columns:1fr}}
@@ -317,6 +324,13 @@ footer a{color:var(--cream)}
       <div><dt>空調</dt><dd>冷暖房</dd></div>
       <div><dt>その他</dt><dd>掃除道具</dd></div>
     </dl>
+    <h3 class="scenes-title">こんな使い方ができます</h3>
+    <div class="scenes">
+      <figure><img src="img/scene-day.jpg" alt="昼の光が入るカウンターで、コーヒーとケーキを楽しむお客さん" width="1400" height="1046" loading="lazy"><figcaption><b>昼の時間帯（9〜19時）</b>カフェバーとして、コーヒーや軽いお酒を。</figcaption></figure>
+      <figure><img src="img/scene-prep.jpg" alt="開店前にグラスを磨く店主の手元" width="1400" height="1046" loading="lazy"><figcaption><b>自分の店として</b>開店前の準備から、お店づくりまで自分のやり方で。</figcaption></figure>
+      <figure><img src="img/scene-box.jpg" alt="ボックス席でプロジェクターを使いカラオケを楽しむグループ" width="1400" height="1046" loading="lazy"><figcaption><b>イベント・貸切に</b>ボックス席でプロジェクターやカラオケを使って。</figcaption></figure>
+    </div>
+    <p class="note">※利用シーンのイメージです（実際の店内とは異なります）。</p>
   </div>
 </section>
 

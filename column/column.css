@@ -40,6 +40,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:800;letter-spacing:.06em;line-heig
 .a-hero img{width:100%;aspect-ratio:16/8;object-fit:cover}
 .a-hero figcaption{font-size:12px;color:var(--mute);padding-top:6px}
 
+.a-fig{margin:28px 0}
+.a-fig img{width:100%;border-radius:4px}
+.a-fig figcaption{font-size:12px;color:var(--mute);padding-top:6px}
+
 /* Summary box */
 .summary{background:var(--panel);border-left:3px solid var(--amber);padding:22px 24px;margin:36px 0}
 .body .summary h2{font-size:17px;font-family:var(--sans);letter-spacing:.04em;margin:0 0 8px;padding:0;border:0;color:var(--amber)}
