@@ -4,5 +4,5 @@
 
 - ページ：index.html
 - 画像：img/（店内写真を絵画調に加工したもの）
-- 公式LINE：https://lin.ee/5M9WkNy
+- 公式LINE：https://lin.ee/sJ6vZEw
 - 公開URL：https://susukino-tenantshare.com/
